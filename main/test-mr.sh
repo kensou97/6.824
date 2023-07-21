@@ -246,18 +246,23 @@ sleep 1
 # `jobs` ensures that any completed old processes from other tests
 # are not waited upon.
 jobs &> /dev/null
-if [[ "$OSTYPE" = "darwin"* ]]
-then
-  # bash on the Mac doesn't have wait -n
-  while [ ! -e $DF ]
-  do
-    sleep 0.2
-  done
-else
-  # the -n causes wait to wait for just one child process,
-  # rather than waiting for all to finish.
-  wait -n
-fi
+while [ ! -e $DF ]
+do
+  sleep 0.2
+done
+
+#if [[ "$OSTYPE" = "darwin"* ]]
+#then
+#  # bash on the Mac doesn't have wait -n
+#  while [ ! -e $DF ]
+#  do
+#    sleep 0.2
+#  done
+#else
+#  # the -n causes wait to wait for just one child process,
+#  # rather than waiting for all to finish.
+#  wait -n
+#fi
 
 rm -f $DF
 

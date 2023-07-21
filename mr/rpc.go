@@ -22,6 +22,23 @@ type ExampleReply struct {
 	Y int
 }
 
+type ApplyTaskRequest struct {
+	WorkerId string
+}
+
+type ApplyTaskResponse struct {
+	Task        *Task
+	ReduceCount int
+}
+
+type SubmitTaskRequest struct {
+	WorkerId string
+	Task     *Task
+}
+
+type SubmitTaskResponse struct {
+}
+
 // Add your RPC definitions here.
 
 // Cook up a unique-ish UNIX-domain socket name
